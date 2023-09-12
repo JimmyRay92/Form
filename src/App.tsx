@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, SetStateAction, useState } from "react";
 import { UserForm } from "./components/UserForm";
 import { useMultistepForm } from "./hooks/useMultiStepForm";
 
@@ -9,28 +9,40 @@ import SubscriptionForm, {
 } from "./components/SubscriptionForm";
 import AddOnsForm from "./components/AddOnsForm";
 import Summary from "./components/Summary";
+import AppContainer from "./components/AppContainer";
+import FormContainer from "./components/FormContainer";
+import SignUpWizard from "./components/SignUpWizard";
 
 type addOnName = "online service" | "larger storage" | "customizable profile";
+
 export type addOn = {
   name: addOnName;
   addedOn: boolean;
   description: string;
+  monthlyPrice: string;
+  yearlyPrice: string;
 };
 const addOnData: addOn[] = [
   {
     name: "online service",
     addedOn: false,
     description: "access to multiplayer games",
+    monthlyPrice: "1",
+    yearlyPrice: "10",
   },
   {
     name: "larger storage",
     addedOn: false,
     description: "extra 1tb of cloud save",
+    monthlyPrice: "2",
+    yearlyPrice: "20",
   },
   {
     name: "customizable profile",
     addedOn: false,
     description: "custom theme on your profile",
+    monthlyPrice: "2",
+    yearlyPrice: "20",
   },
 ];
 
@@ -86,17 +98,29 @@ function App() {
     });
   };
 
-  const { currentStepIndex, step, isFirstStep, isLastStep, back, next } =
-    useMultistepForm([
-      <UserForm {...data} updateFields={updateFields} />,
-      <SubscriptionForm {...data} updateFields={updateFields} />,
-      <AddOnsForm
-        addOns={data.addOns}
-        updateAddOn={updateAddOn}
-        billingType={data.billingType}
-      />,
-      <Summary />,
-    ]);
+  const {
+    setCurrentStepIndex,
+    currentStepIndex,
+    step,
+    isFirstStep,
+    isLastStep,
+    back,
+    next,
+  } = useMultistepForm([
+    <UserForm {...data} updateFields={updateFields} />,
+    <SubscriptionForm {...data} updateFields={updateFields} />,
+    <AddOnsForm
+      addOns={data.addOns}
+      updateAddOn={updateAddOn}
+      billingType={data.billingType}
+    />,
+    <Summary
+      subscriptionPlan={data.subscriptionPlan}
+      billingType={data.billingType}
+      addOns={data.addOns}
+      editPlan={moveToIndex}
+    />,
+  ]);
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -104,69 +128,23 @@ function App() {
     alert("Successful Account Creation");
   }
 
+  function moveToIndex(index: SetStateAction<number>) {
+    setCurrentStepIndex(index);
+  }
+
   return (
-    <div
-      style={{
-        backgroundColor: "hsl(229, 24%, 87%)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        minHeight: "100vh",
-      }}
-    >
-      <div
-        style={{
-          background: "white",
-          border: "1px solid black",
-          padding: "0.5rem",
-          margin: "1rem",
-          borderRadius: ".5rem",
-          fontFamily: "Arial",
-          display: "flex",
-        }}
-      >
-        <SideNavbar currentStepIndex={currentStepIndex} />
-        <form style={{ padding: "0 3rem" }} onSubmit={onSubmit}>
-          {step}
-          <div
-            style={{
-              marginTop: "1rem",
-              display: "flex",
-              gap: ".5rem",
-              justifyContent: "space-between",
-              paddingTop: "4rem",
-              paddingBottom: "1rem",
-            }}
-          >
-            {!isFirstStep && (
-              <button
-                type="button"
-                onClick={back}
-                style={{
-                  width: "5rem",
-                  height: "2rem",
-                  backgroundColor: "white",
-                  outline: "none",
-                  border: "none",
-                }}
-              >
-                Back
-              </button>
-            )}
-            <button
-              style={{
-                width: "5rem",
-                height: "2rem",
-                backgroundColor: "hsl(228, 100%, 84%)",
-              }}
-              type="submit"
-            >
-              {isLastStep ? "Finish" : "Next"}
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+    <AppContainer>
+      <FormContainer>
+        <SignUpWizard
+          currentStepIndex={currentStepIndex}
+          onSubmit={onSubmit}
+          step={step}
+          isFirstStep={isFirstStep}
+          isLastStep={isLastStep}
+          back={back}
+        />
+      </FormContainer>
+    </AppContainer>
   );
 }
 

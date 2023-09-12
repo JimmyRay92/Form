@@ -9,13 +9,13 @@ type AddOnsFormProps = {
 
 function displayMonthlyPrice(addOn: addOn, billingType: BillingType) {
   if (billingType === "monthly" && addOn.name === "online service") {
-    return "+1";
+    return "+$1/mo";
   } else if (billingType === "monthly") {
-    return "+2";
+    return "+$2/mo";
   } else if (billingType === "annual" && addOn.name === "online service") {
-    return "+10";
+    return "+$10/yr";
   } else if (billingType === "annual") {
-    return "+20";
+    return "+20/yr";
   } else {
     return "";
   }
@@ -38,7 +38,6 @@ const AddOnsForm = ({ addOns, updateAddOn, billingType }: AddOnsFormProps) => {
                 ? "solid hsl(243, 100%, 62%) 1px"
                 : "solid hsl(229, 24%, 87%) 1px",
               display: "flex",
-              //   flexDirection: "column",
               paddingLeft: "1rem",
               alignItems: "center",
               justifyContent: "space-between",
