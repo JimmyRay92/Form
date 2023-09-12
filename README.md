@@ -2,11 +2,11 @@
 
 # How to run the project
 
-This project is build using vite and react. To run the project you will need to have node installed on your machine. You can download node [here](https://nodejs.org/en/).
+This project is built using Vite and React. To run the project you will need to have node installed on your machine. You can download node [here](https://nodejs.org/en/).
 
-Install dependencies
+Run `npm install` to install dependencies.
 
-Run npm run dev to start the project
+Run `npm run dev` to start the project locally.
 
 # Tech stack
 
@@ -15,3 +15,4 @@ Run npm run dev to start the project
 - CSS modules
 - Vite
 - React Hook Form
+- Zod
