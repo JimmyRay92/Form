@@ -1,0 +1,59 @@
+.summary__detail,
+.summary__total {
+  padding: 1.5rem 1.3rem 0.8rem;
+}
+
+.summary__detail {
+  background: var(--color-lightgrey);
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+}
+
+.summary__plan,
+.summary__addon,
+.summary__total {
+  display: flex;
+  justify-content: space-between;
+}
+
+.summary__plan {
+  align-items: center;
+}
+
+.summary__plan a {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.summary__plan a:hover {
+  color: var(--color-secondary);
+}
+
+.summary__plan-heading {
+  text-transform: capitalize;
+  margin-bottom: 0.3rem;
+}
+
+.summary__plan .step__heading,
+.summary__total-price {
+  font-weight: 600;
+}
+
+.summary__straight-line {
+  width: 100%;
+  opacity: 0.2;
+  height: 15px;
+  margin: 1.2rem 0;
+}
+
+.summary__addon {
+  margin-bottom: 1rem;
+}
+
+.summary__total {
+  padding: 1.5rem;
+}
+
+.summary__total-price {
+  color: var(--color-secondary);
+}
