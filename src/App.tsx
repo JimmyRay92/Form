@@ -4,7 +4,6 @@ import Nav from "./components/Nav";
 
 function App() {
   const [currentStep, setCurrentStep] = useState<number | undefined>(1);
-  console.log(currentStep);
 
   return (
     <>

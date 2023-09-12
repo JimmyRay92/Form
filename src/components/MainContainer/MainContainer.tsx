@@ -19,7 +19,6 @@ const MainContainer = ({ currentStep, onValidNext, onPrevious }: Props) => {
   const [billingCycle, setBillingCycle] = useState<string>();
   const [addOns, setAddOns] = useState<AddOn[] | undefined>();
   const [thankYouPage, setThankYouPage] = useState<boolean>();
-  console.log(thankYouPage);
 
   const handleNext = (isValid: boolean) => {
     if (isValid) onValidNext(true);
