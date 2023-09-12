@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap");
+
+:root {
+  --color-main-background: hsl(217, 100%, 97%);
+  --color-primary: hsl(213, 96%, 18%);
+  --color-white: hsl(0, 0%, 100%);
+  --color-red: hsl(354, 84%, 57%);
+  --color-grey: hsl(0, 0%, 75%);
+  --color-purple: hsl(268, 65%, 30%);
+  --color-lightgrey: hsl(231, 100%, 99%);
+  --color-secondary: hsl(243, 100%, 62%);
+  --color-selected-grey: hsl(229, 24%, 87%);
+  --color-step-selected: hsl(206, 94%, 87%);
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--color-main-background);
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu", Arial, Helvetica, sans-serif;
+  height: 100vh;
+}
+
+.app {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .app {
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    background: var(--color-white);
+    max-width: 80vw;
+    width: auto;
+    height: 500px;
+    padding: 1rem;
+    position: relative;
+    margin: 3.5rem 1rem 1rem;
+  }
+}
+
+.btn__prev,
+.btn__next,
+.btn__summary {
+  border-radius: 5px;
+  width: 100px;
+  height: 40px;
+  position: fixed;
+  z-index: 2;
+  bottom: 0.5rem;
+  border: 0;
+  cursor: pointer;
+}
+
+.btn__prev {
+  background: none;
+  color: var(--color-grey);
+  left: 1.2rem;
+}
+
+.btn__prev:hover {
+  color: hsl(0, 1%, 57%);
+}
+
+.btn__next,
+.btn__summary {
+  color: var(--color-white);
+  right: 1.2rem;
+}
+
+.btn__next {
+  background: var(--color-primary);
+}
+
+.btn__next:hover {
+  background: hsl(213, 72%, 25%);
+}
+
+.btn__summary {
+  background: var(--color-secondary);
+}
+
+.btn__summary:hover {
+  background: hsl(243, 100%, 66%);
+}
+
+@media screen and (min-width: 768px) {
+  .btn__prev {
+    position: absolute;
+    left: 40%;
+    bottom: 0.8rem;
+  }
+
+  .btn__next,
+  .btn__summary {
+    position: absolute;
+    right: 2.5rem;
+    bottom: 0.8rem;
+  }
+}
+
+/* Thank you page */
+.thankyou {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  height: 100%;
+  margin: 4rem 0;
+}
+
+.thankyou__heading {
+  color: var(--color-primary);
+  margin: 1rem 0;
+}
+
+.thankyou__image {
+  width: 70px;
+}
+
+.thankyou__text {
+  color: var(--color-grey);
+  margin-top: 0;
+}

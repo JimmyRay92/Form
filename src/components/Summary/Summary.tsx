@@ -1,6 +1,5 @@
 import { AddOn } from "../AddOns/AddOns";
 import "./Summary.css";
-import straightLine from "../../assets/icon-straight-line.png";
 import { Usage } from "../UsageLevel/UsageLevel";
 import { FormEvent, useEffect, useState } from "react";
 import ThankYou from "../ThankYou";
@@ -61,8 +60,6 @@ const Summary = ({
                 </span>
               </div>
               <div>
-                <img className="summary__straight-line" src={straightLine} />
-
                 {addOns &&
                   addOns.map((addOn) => (
                     <div key={addOn.id} className="summary__addon">
