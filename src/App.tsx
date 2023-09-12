@@ -10,6 +10,12 @@ import SubscriptionForm, {
 import AddOnsForm from "./components/AddOnsForm";
 import Summary from "./components/Summary";
 
+type addOnName = "online service" | "larger storage" | "customizable profile";
+export type addOn = {
+  name: addOnName;
+  addedOn: boolean;
+  description: string;
+};
 const addOnData: addOn[] = [
   {
     name: "online service",
@@ -27,12 +33,6 @@ const addOnData: addOn[] = [
     description: "custom theme on your profile",
   },
 ];
-
-export type addOn = {
-  name: string;
-  addedOn: boolean;
-  description: string;
-};
 
 export type FormData = {
   name: string;
@@ -90,7 +90,11 @@ function App() {
     useMultistepForm([
       <UserForm {...data} updateFields={updateFields} />,
       <SubscriptionForm {...data} updateFields={updateFields} />,
-      <AddOnsForm addOns={data.addOns} updateAddOn={updateAddOn} />,
+      <AddOnsForm
+        addOns={data.addOns}
+        updateAddOn={updateAddOn}
+        billingType={data.billingType}
+      />,
       <Summary />,
     ]);
 

@@ -1,11 +1,27 @@
 import { addOn } from "../App";
+import { BillingType } from "./SubscriptionForm";
 
 type AddOnsFormProps = {
   addOns: addOn[];
   updateAddOn: (addOn: addOn) => void;
+  billingType: BillingType;
 };
 
-const AddOnsForm = ({ addOns, updateAddOn }: AddOnsFormProps) => {
+function displayMonthlyPrice(addOn: addOn, billingType: BillingType) {
+  if (billingType === "monthly" && addOn.name === "online service") {
+    return "+1";
+  } else if (billingType === "monthly") {
+    return "+2";
+  } else if (billingType === "annual" && addOn.name === "online service") {
+    return "+10";
+  } else if (billingType === "annual") {
+    return "+20";
+  } else {
+    return "";
+  }
+}
+
+const AddOnsForm = ({ addOns, updateAddOn, billingType }: AddOnsFormProps) => {
   console.log(addOns);
   return (
     <>
@@ -18,22 +34,25 @@ const AddOnsForm = ({ addOns, updateAddOn }: AddOnsFormProps) => {
             key={addOn.name}
             style={{
               borderRadius: "10px",
-              //   border:
-              //     subscriptionPlan === plan
-              //       ? "solid hsl(243, 100%, 62%) 1px"
-              //       : "solid grey 1px",
+              border: addOn.addedOn
+                ? "solid hsl(243, 100%, 62%) 1px"
+                : "solid hsl(229, 24%, 87%) 1px",
               display: "flex",
               flexDirection: "column",
               paddingLeft: "1rem",
               alignItems: "flex-start",
+              justifyContent: "center",
               padding: "0.5rem",
               marginRight: "1rem",
-              width: "100px",
-              height: "120px",
+              width: "300px",
+              height: "100px",
             }}
           >
-            <h2>{addOn.name}</h2>
-            <p>{addOn.description}</p>
+            <div>
+              <h2 style={{ margin: 0 }}>{addOn.name}</h2>
+              <p>{addOn.description}</p>
+              <p>{displayMonthlyPrice(addOn, billingType)}</p>
+            </div>
           </div>
         );
       })}
