@@ -31,7 +31,7 @@ const Summary = ({
 
   useEffect(() => {
     if (thankYou) onThankYou(thankYou);
-  }, [thankYou]);
+  }, [onThankYou, thankYou]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./ToggleSwitch.css";
 
 interface Props {
-  // onSelectBilling: (billing: string) => void;
   billingCycle: string | undefined;
   setBillingCycle: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
@@ -13,14 +12,12 @@ const ToggleSwitch = ({ billingCycle, setBillingCycle }: Props) => {
 
   useEffect(() => {
     setBillingCycle(billing);
-  }, [checked]);
+  }, [billing, checked, setBillingCycle]);
 
-  //ensures that toggleSwitch maintains its state when you
-  //navigate the steps
   useEffect(() => {
     if (billingCycle === "yearly") setChecked(true);
     else setChecked(false);
-  }, []);
+  }, [billingCycle]);
 
   return (
     <div className="toggle__switch">

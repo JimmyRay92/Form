@@ -28,7 +28,6 @@ const PersonalInfo = ({ onValid, onDataSubmit, personalData }: Props) => {
 
   const onSubmit = (data: PersonalInfo) => {
     if (data) {
-      // setPersonalData(data);
       onDataSubmit(data);
       onValid(isValid);
     }
