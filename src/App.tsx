@@ -1,6 +1,6 @@
 import { useState } from "react";
 import MainContainer from "./components/MainContainer";
-import Nav from "./components/Nav";
+import Nav from "./components/nav";
 
 function App() {
   const [currentStep, setCurrentStep] = useState<number | undefined>(1);
