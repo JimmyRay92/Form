@@ -1,6 +1,3 @@
-import React, { useState } from "react";
-import "./SubscriptionForm.css";
-
 export type BillingType = "monthly" | "annual";
 export type SubscriptionPlan = "arcade" | "advanced" | "pro";
 

@@ -8,6 +8,8 @@ import SubscriptionForm, {
   BillingType,
   SubscriptionPlan,
 } from "./components/SubscriptionForm";
+import AddOnsForm from "./components/AddOnsForm";
+import Summary from "./components/Summary";
 
 export type FormData = {
   name: string;
@@ -19,7 +21,7 @@ export type FormData = {
   zip: string;
   email: string;
   password: string;
-  subscription: SubscriptionPlan;
+  subscriptionPlan: SubscriptionPlan;
   billingType: BillingType;
 };
 
@@ -33,7 +35,7 @@ const INITIAL_DATA: FormData = {
   zip: "",
   email: "",
   password: "",
-  subscription: "arcade",
+  subscriptionPlan: "arcade",
   billingType: "monthly",
 };
 
@@ -48,8 +50,8 @@ function App() {
     useMultistepForm([
       <UserForm {...data} updateFields={updateFields} />,
       <SubscriptionForm {...data} updateFields={updateFields} />,
-      <AccountForm {...data} updateFields={updateFields} />,
-      //   <div>Summary</div>,
+      <AddOnsForm />,
+      <Summary />,
     ]);
 
   function onSubmit(e: FormEvent) {
