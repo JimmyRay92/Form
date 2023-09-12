@@ -1,0 +1,35 @@
+.addon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--color-grey);
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 0.8rem 0;
+  cursor: pointer;
+}
+
+.addon:hover {
+  border: 1px solid var(--color-purple);
+}
+
+.addon__checkbox {
+  margin: 0 1.2rem 0 0.8rem;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+}
+
+.addon__container {
+  width: 100%;
+}
+
+.addon__heading {
+  margin-bottom: 0.2rem;
+  font-weight: 600;
+}
+
+.addon--selected {
+  background: var(--color-lightgrey);
+  border: 1px solid var(--color-purple);
+}
