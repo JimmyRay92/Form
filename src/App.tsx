@@ -2,7 +2,6 @@ import { FormEvent, useState } from "react";
 import { UserForm } from "./components/UserForm";
 import { useMultistepForm } from "./hooks/useMultiStepForm";
 
-import { AccountForm } from "./components/AccountForm";
 import SideNavbar from "./components/SideNavBar";
 import SubscriptionForm, {
   BillingType,
@@ -10,6 +9,30 @@ import SubscriptionForm, {
 } from "./components/SubscriptionForm";
 import AddOnsForm from "./components/AddOnsForm";
 import Summary from "./components/Summary";
+
+const addOnData: addOn[] = [
+  {
+    name: "online service",
+    addedOn: false,
+    description: "access to multiplayer games",
+  },
+  {
+    name: "larger storage",
+    addedOn: false,
+    description: "extra 1tb of cloud save",
+  },
+  {
+    name: "customizable profile",
+    addedOn: false,
+    description: "custom theme on your profile",
+  },
+];
+
+export type addOn = {
+  name: string;
+  addedOn: boolean;
+  description: string;
+};
 
 export type FormData = {
   name: string;
@@ -23,6 +46,7 @@ export type FormData = {
   password: string;
   subscriptionPlan: SubscriptionPlan;
   billingType: BillingType;
+  addOns: addOn[];
 };
 
 const INITIAL_DATA: FormData = {
@@ -37,6 +61,7 @@ const INITIAL_DATA: FormData = {
   password: "",
   subscriptionPlan: "arcade",
   billingType: "monthly",
+  addOns: addOnData,
 };
 
 function App() {
@@ -46,11 +71,26 @@ function App() {
       return { ...prev, ...fields };
     });
   };
-  const { steps, currentStepIndex, step, isFirstStep, isLastStep, back, next } =
+
+  const updateAddOn = (addOn: addOn) => {
+    setData((prev) => {
+      // Map over the existing addOns array and update the addedOn property
+      const updatedAddOns = prev.addOns.map((existingAddOn) => {
+        if (existingAddOn.name === addOn.name) {
+          return { ...existingAddOn, addedOn: !addOn.addedOn };
+        }
+        return existingAddOn;
+      });
+
+      return { ...prev, addOns: updatedAddOns };
+    });
+  };
+
+  const { currentStepIndex, step, isFirstStep, isLastStep, back, next } =
     useMultistepForm([
       <UserForm {...data} updateFields={updateFields} />,
       <SubscriptionForm {...data} updateFields={updateFields} />,
-      <AddOnsForm />,
+      <AddOnsForm addOns={data.addOns} updateAddOn={updateAddOn} />,
       <Summary />,
     ]);
 

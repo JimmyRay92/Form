@@ -1,23 +1,39 @@
-const addOnsData: addOns[] = [
-  { name: "online service", description: "access to multiplayer games" },
-  { name: "larger storage", description: "extra 1tb of cloud save" },
-  { name: "customizable profile", description: "custom theme on your profile" },
-];
+import { addOn } from "../App";
 
-type addOns = {
-  name: string;
-  description: string;
+type AddOnsFormProps = {
+  addOns: addOn[];
+  updateAddOn: (addOn: addOn) => void;
 };
-const AddOnsForm = () => {
+
+const AddOnsForm = ({ addOns, updateAddOn }: AddOnsFormProps) => {
+  console.log(addOns);
   return (
     <>
       <h2>Pick add ons</h2>
       <p>Add-ons help enhance your gaming experience</p>
-      {addOnsData.map(({ name, description }) => {
+      {addOns.map((addOn) => {
         return (
-          <div key={name}>
-            <h2>{name}</h2>
-            <p>{description}</p>
+          <div
+            onClick={() => updateAddOn(addOn)}
+            key={addOn.name}
+            style={{
+              borderRadius: "10px",
+              //   border:
+              //     subscriptionPlan === plan
+              //       ? "solid hsl(243, 100%, 62%) 1px"
+              //       : "solid grey 1px",
+              display: "flex",
+              flexDirection: "column",
+              paddingLeft: "1rem",
+              alignItems: "flex-start",
+              padding: "0.5rem",
+              marginRight: "1rem",
+              width: "100px",
+              height: "120px",
+            }}
+          >
+            <h2>{addOn.name}</h2>
+            <p>{addOn.description}</p>
           </div>
         );
       })}
