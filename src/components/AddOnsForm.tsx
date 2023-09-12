@@ -38,10 +38,10 @@ const AddOnsForm = ({ addOns, updateAddOn, billingType }: AddOnsFormProps) => {
                 ? "solid hsl(243, 100%, 62%) 1px"
                 : "solid hsl(229, 24%, 87%) 1px",
               display: "flex",
-              flexDirection: "column",
+              //   flexDirection: "column",
               paddingLeft: "1rem",
-              alignItems: "flex-start",
-              justifyContent: "center",
+              alignItems: "center",
+              justifyContent: "space-between",
               padding: "0.5rem",
               marginRight: "1rem",
               width: "300px",
@@ -51,8 +51,8 @@ const AddOnsForm = ({ addOns, updateAddOn, billingType }: AddOnsFormProps) => {
             <div>
               <h2 style={{ margin: 0 }}>{addOn.name}</h2>
               <p>{addOn.description}</p>
-              <p>{displayMonthlyPrice(addOn, billingType)}</p>
             </div>
+            {displayMonthlyPrice(addOn, billingType)}
           </div>
         );
       })}
